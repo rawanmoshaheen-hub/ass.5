@@ -1,0 +1,27 @@
+div image{
+    width: 100px;
+}
+
+.testimonials-grid{
+   
+    display: flex;
+    flex-wrap: wrap;
+    background-color: brown;
+}
+@media screen and (main-width:640px){ 
+    .card{
+        width: 55%;
+    }
+    
+}
+
+@media  screen and (main-width:768px) {
+    
+}
+@media screen  and (main-width:1024px){
+    .card{
+        width: 25%;
+    }
+    
+}
+        
