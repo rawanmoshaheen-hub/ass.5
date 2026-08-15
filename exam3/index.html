@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NutriPlan - Meals & Recipes</title>
+
+  <link
+    rel="icon"
+    href="https://cdn-icons-png.flaticon.com/512/706/706164.png"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+  <div id="toast" class="toast"></div>
+
+  <div id="loading" class="loading-screen hidden">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="min-h-screen flex">
+
+    <aside id="sidebar" class="sidebar">
+
+      <div class="p-5 border-b border-slate-100">
+
+        <div class="flex items-center gap-3">
+
+          <div class="logo-box">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+
+          <div>
+            <h1 class="font-extrabold text-xl">
+              NutriPlan
+            </h1>
+
+            <p class="text-xs text-slate-500">
+              Your Wellness Journey
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <nav class="p-4 space-y-2">
+
+        <p class="nav-title">
+          MAIN MENU
+        </p>
+
+        <a
+          href="#home"
+          data-route="home"
+          class="nav-link"
+        >
+          <i class="fa-solid fa-utensils"></i>
+
+          <span>
+            Meals & Recipes
+          </span>
+        </a>
+
+
+        <a
+          href="#scanner"
+          data-route="scanner"
+          class="nav-link"
+        >
+          <i class="fa-solid fa-barcode"></i>
+
+          <span>
+            Product Scanner
+          </span>
+        </a>
+
+
+        <a
+          href="#foodlog"
+          data-route="foodlog"
+          class="nav-link"
+        >
+          <i class="fa-solid fa-clipboard-list"></i>
+
+          <span>
+            Food Log
+          </span>
+        </a>
+
+      </nav>
+
+
+      <div class="sidebar-user">
+
+        <div class="avatar">
+          NP
+        </div>
+
+        <div class="min-w-0">
+
+          <p class="font-semibold truncate">
+            NutriPlan User
+          </p>
+
+          <p class="text-xs text-slate-500">
+            Premium Member
+          </p>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+      <!-- Mobile Header -->
+      <header class="mobile-header">
+
+        <button id="menuBtn" class="icon-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="flex items-center gap-2">
+
+          <div class="logo-box small">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+
+          <b>
+            NutriPlan
+          </b>
+
+        </div>
+
+      </header>
+
+
+      <section
+        id="homePage"
+        class="page max-w-7xl mx-auto px-4 md:px-8 py-6"
+      >
+
+        <div class="mb-5">
+
+          <h2 class="text-2xl md:text-3xl font-extrabold">
+            Meals & Recipes
+          </h2>
+
+          <p class="text-slate-500">
+            Discover delicious and nutritious recipes tailored for you
+          </p>
+
+        </div>
+
+
+
+        <div class="search-wrap mb-4">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+          <input
+            id="mealSearch"
+            type="search"
+            placeholder="Search recipes by name, ingredient, or cuisine..."
+          />
+
+        </div>
+
+
+        <div
+          id="areas"
+          class="filter-row mb-7"
+        ></div>
+
+
+
+        <div class="section-head">
+
+          <div>
+
+            <h3>
+              Browse by Meal Type
+            </h3>
+
+            <p>
+              Find the perfect recipe for any time of day
+            </p>
+
+          </div>
+
+          <button
+            id="showAllCategories"
+            class="text-emerald-600 font-semibold text-sm"
+          >
+            View All
+
+            <i class="fa-solid fa-arrow-right ml-1"></i>
+
+          </button>
+
+        </div>
+
+
+        <div
+          id="categories"
+          class="category-grid mb-8"
+        ></div>
+
+
+        <div class="section-head">
+
+          <div>
+
+            <h3>
+              All Recipes
+            </h3>
+
+            <p id="mealCount">
+              Loading recipes...
+            </p>
+
+          </div>
+
+
+          <div class="view-toggle">
+
+            <button
+              id="gridView"
+              class="active"
+            >
+              <i class="fa-solid fa-grip"></i>
+            </button>
+
+            <button id="listView">
+
+              <i class="fa-solid fa-list"></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="mealsGrid"
+          class="meal-grid"
+        ></div>
+
+      </section>
+
+
+      <section
+        id="detailsPage"
+        class="page hidden max-w-7xl mx-auto px-4 md:px-8 py-6"
+      >
+
+        <button
+          id="backHome"
+          class="back-btn mb-5"
+        >
+
+          <i class="fa-solid fa-arrow-left"></i>
+
+          Back to Recipes
+
+        </button>
+
+
+        <div id="detailsContent"></div>
+
+      </section>
+
+
+      <section
+        id="scannerPage"
+        class="page hidden max-w-7xl mx-auto px-4 md:px-8 py-6"
+      >
+
+        <div class="mb-6">
+
+          <h2 class="text-2xl md:text-3xl font-extrabold">
+            Product Scanner
+          </h2>
+
+          <p class="text-slate-500">
+            Search a product by name or barcode and add it to your food log.
+          </p>
+
+        </div>
+
+
+        <div class="scanner-panel">
+
+          <div class="scanner-input">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+              id="productSearch"
+              placeholder="Search product e.g. Pepsi, Nutella..."
+            />
+
+            <button id="productSearchBtn">
+              Search
+            </button>
+
+          </div>
+
+
+          <div class="or-line">
+            <span>OR</span>
+          </div>
+
+
+          <div class="scanner-input">
+
+            <i class="fa-solid fa-barcode"></i>
+
+            <input
+              id="barcodeInput"
+              inputmode="numeric"
+              placeholder="Enter product barcode..."
+            />
+
+            <button id="barcodeBtn">
+              Scan Barcode
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-head mt-8">
+
+          <div>
+
+            <h3>
+              Products
+            </h3>
+
+            <p id="productCount">
+              Search for a product to begin
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="productsGrid"
+          class="product-grid"
+        ></div>
+
+      </section>
+
+
+      <section
+        id="foodlogPage"
+        class="page hidden max-w-7xl mx-auto px-4 md:px-8 py-6"
+      >
+
+        <div class="mb-6">
+
+          <h2 class="text-2xl md:text-3xl font-extrabold">
+            Food Log
+          </h2>
+
+          <p class="text-slate-500">
+            Track your daily calories and macronutrients.
+          </p>
+
+        </div>
+
+
+        <div
+          id="goalCards"
+          class="goal-grid"
+        ></div>
+
+
+        
+
+        <div class="log-card mt-7">
+
+          <div class="section-head">
+
+            <div>
+
+              <h3>
+                Today's Meals
+              </h3>
+
+              <p id="logDate"></p>
+
+            </div>
+
+
+            <button
+              id="clearLog"
+              class="danger-btn"
+            >
+
+              <i class="fa-solid fa-trash"></i>
+
+              Clear All
+
+            </button>
+
+          </div>
+
+
+          <div id="loggedMeals"></div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <div
+    id="modal"
+    class="modal hidden"
+  >
+
+    <div class="modal-card">
+
+      <button
+        id="closeModal"
+        class="modal-close"
+      >
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+
+      <div id="modalBody"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <script src="./index.js"></script>
+
+</body>
+</html>
