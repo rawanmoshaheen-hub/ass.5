@@ -1,0 +1,140 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f6f8fb;
+  --card: #fff;
+  --text: #1a2233;
+  --muted: #7b8798;
+  --line: #e8ecf2;
+  --blue: #1d5fd1;
+  --green: #22a45d;
+  --red: #e5483f;
+  --orange: #f2994a;
+  --pink: #e8467c;
+}
+
+body { font-family: "Cairo", sans-serif; background: var(--bg); color: var(--text); }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+small { color: var(--muted); font-size: .78rem; display: block; }
+h2 { font-size: 1rem; }
+
+
+.layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;   
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: #fff;
+  border-left: 1px solid var(--line);
+  padding: 24px 16px;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.brand { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+.brand-icon { background: var(--blue); color: #fff; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; font-size: 1.4rem; }
+.brand h1 { font-size: 1.5rem; line-height: 1.1; }
+.brand p { font-size: .72rem; color: var(--muted); }
+.sidebar nav a { display: block; padding: 11px 14px; border-radius: 10px; margin-bottom: 4px; font-size: .92rem; transition: background .2s; }
+.sidebar nav a:hover { background: #f0f4fb; }
+.sidebar nav a.active { background: #e8f0fd; color: var(--blue); font-weight: 700; }
+.sidebar h3 { font-size: .78rem; color: var(--muted); margin: 20px 14px 8px; }
+
+.content { padding: 20px 28px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+.user { display: flex; align-items: center; gap: 10px; }
+.avatar { width: 42px; height: 42px; border-radius: 50%; background: #cfd8e6; object-fit: cover; }
+.user b { display: block; font-size: .92rem; }
+.tools { display: flex; gap: 16px; font-size: 1.1rem; }
+
+
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.card { background: var(--card); border-radius: 16px; padding: 20px; box-shadow: 0 1px 8px rgba(26,34,51,.05); }
+.card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.link { color: var(--blue); font-size: .82rem; }
+
+
+.stat strong { display: block; font-size: 1.8rem; margin: 4px 0; }
+.up { color: var(--green); font-size: .85rem; }
+.down { color: var(--red); font-size: .85rem; }
+
+.activities  { grid-column: 1; grid-row: 2; }
+.transactions { grid-column: 2 / 4; grid-row: 2; }
+
+.activities li { border-inline-start: 3px solid var(--blue); background: #f6f9ff; padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; }
+.activities p { font-size: .8rem; color: var(--muted); margin: 2px 0; }
+.activities .link { display: block; text-align: center; margin-top: 8px; }
+
+table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+th { text-align: start; color: var(--muted); font-weight: 600; padding: 8px 6px; }
+td { padding: 12px 6px; border-top: 1px solid var(--line); }
+td b { display: block; }
+.tag { padding: 3px 10px; border-radius: 20px; font-size: .75rem; }
+.tag.in { background: #e3f6ec; color: var(--green); }
+.tag.out { background: #fdeceb; color: var(--red); }
+.tag.shop { background: #e8f0fd; color: var(--blue); }
+.status { background: #eef1f6; padding: 3px 10px; border-radius: 6px; font-size: .75rem; }
+.plus { color: var(--green); font-weight: 700; }
+.minus { color: var(--red); font-weight: 700; }
+
+.budget   { grid-column: 1; grid-row: 3; }
+.middle   { grid-column: 2; grid-row: 3; display: grid; gap: 20px; }
+.payments { grid-column: 3; grid-row: 3; display: grid; gap: 14px; }
+.payments .card-head { margin-bottom: 0; }
+
+.budget-total strong { display: block; font-size: 1.5rem; }
+.meter { background: #e8ecf2; height: 6px; border-radius: 6px; overflow: hidden; margin-top: 6px; }
+.meter i { display: block; height: 100%; background: var(--blue); }
+.meter.orange i { background: var(--orange); }
+.meter.red i { background: var(--red); }
+.meter.pink i { background: var(--pink); }
+.meter.green i { background: var(--green); }
+.budget-list { margin-top: 16px; display: grid; gap: 14px; }
+.budget-list li > div:first-child { display: flex; justify-content: space-between; align-items: baseline; }
+
+.legend { display: flex; gap: 8px; align-items: center; font-size: .75rem; color: var(--muted); margin-bottom: 10px; }
+.d { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+.g { background: var(--green); } .r { background: var(--red); }
+.bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; height: 150px; }
+.week { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 4px; position: relative; padding-bottom: 20px; }
+.week i { display: block; border-radius: 3px 3px 0 0; }
+.week small { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: .68rem; }
+
+.accounts li { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f6f8fb; border-radius: 10px; margin-bottom: 8px; }
+.accounts li b { font-size: .9rem; }
+
+
+.pay-card { color: #fff; border-radius: 14px; padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pay-card.blue { background: #1747b5; }
+.pay-card.red { background: #d93a3a; }
+.pay-card.paypal { background: #1a56c8; grid-template-columns: 1fr; }
+.pay-card .num { grid-column: 1 / -1; letter-spacing: 2px; direction: ltr; text-align: right; font-size: 1.05rem; }
+.pay-card small { color: rgba(255,255,255,.75); }
+
+
+@media (max-width: 1100px) {
+  .main-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat.expenses { grid-column: 1 / -1; }
+  .activities  { grid-column: 1 / -1; grid-row: auto; }
+  .transactions { grid-column: 1 / -1; grid-row: auto; }
+  .budget, .middle, .payments { grid-column: auto; grid-row: auto; }
+  .payments { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
+  .payments .card-head { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-left: 0; border-bottom: 1px solid var(--line); }
+  .sidebar nav { display: flex; flex-wrap: wrap; gap: 4px; }
+  .sidebar h3 { width: 100%; }
+  .main-grid { grid-template-columns: 1fr; }
+  .stat.expenses, .payments { grid-column: auto; }
+  .payments { grid-template-columns: 1fr; }
+  .transactions { overflow-x: auto; }
+  .content { padding: 16px; }
+}
